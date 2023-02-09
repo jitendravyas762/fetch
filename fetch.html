@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch</title>
+</head>
+
+<body>
+    <div id="wrapper"></div>
+
+    <script>
+
+        // CALL STACK
+
+        // API: Application Programming Interface: is a bunch of functions which connects client to the server.
+
+
+        // const data = fetch('https://randomuser.me/api/')
+
+        // console.log(data) //the variable data, does not have random data in it. It only has the promise returned by fetch
+
+
+        fetch('https://randomuser.me/api/')
+            .then((response) => {
+                return response.json()
+            })
+            .then((result) => {
+                showdata(result.results[0])
+                console.log(result)
+            }
+            )
+
+        function showdata(data) {
+            const image = document.createElement("img")
+            image.src = data.picture.large
+
+            const name = document.createElement("h3")
+            name.innerHTML = data.name.first + " " + data.name.last
+
+            const email = document.createElement("p")
+            email.innerHTML = data.email
+
+            document.querySelector("#wrapper").append(image)
+            document.querySelector("#wrapper").append(name)
+            document.querySelector("#wrapper").append(email)
+        }
+
+
+
+
+
+
+        // async function randomdata (){
+        //     const response = await fetch("https://randomuser.me/api/")
+        //     const result = await response.json()
+        //     showdata(result.results[0])
+
+        // }
+        // randomdata()
+
+
+        // URL for next assignment: https://dummyjson.com/products
+    </script>
+</body>
+
+</html>
